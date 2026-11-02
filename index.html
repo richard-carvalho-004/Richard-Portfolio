@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Richard Carvalho | DevOps Engineer</title>
+<meta name="description" content="Richard Carvalho - DevOps Engineer. CI/CD, GitHub Actions, Kubernetes, Azure, AWS and observability.">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#f6f0e6;
+  --card:#fffaf2;
+  --ink:#22232b;
+  --body:#3d3f4a;
+  --muted:#6b6d78;
+  --line:rgba(34,35,43,0.12);
+  --grey:#b9bcc0;
+  --accent:#9b1c31;
+  --accent-dark:#7a1325;
+  --accent-soft:rgba(155,28,49,0.08);
+  --accent-line:rgba(155,28,49,0.28);
+  --shadow:0 10px 30px rgba(60,40,30,0.10);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+html,body{
+  width:100%;
+  min-height:100%;
+  overflow-x:hidden;
+  scroll-behavior:smooth;
+}
+
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'IBM Plex Sans',sans-serif;
+}
+
+#stars{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+}
+
+/* ═══════════════════════════════════════
+   HERO
+═══════════════════════════════════════ */
+
+/* keep every section in one centred column so content sits closer together on wide screens */
+.hero,.about,.experience,.projects,.contact{
+  max-width:1700px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.hero{
+  position:relative;
+  z-index:1;
+  width:100%;
+  min-height:max(100vh,1120px);
+}
+
+.heading{
+  position:absolute;
+  top:10vh;
+  left:4.5vw;
+  z-index:3;
+  line-height:1.05;
+}
+
+.h1{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(2.4rem,6vw,8rem);
+  font-weight:700;
+  letter-spacing:-0.04em;
+}
+
+.h2{
+  font-family:'Space Grotesk',sans-serif;
+  margin-top:10px;
+  font-size:clamp(1.4rem,3.8vw,5rem);
+  font-weight:500;
+  letter-spacing:-0.03em;
+  color:var(--body);
+}
+
+.h1 .p{color:var(--accent);}
+
+.h2{min-height:1.2em;}
+
+.ball{
+  display:inline-block;
+  width:.85em;
+  height:.85em;
+  vertical-align:-0.08em;
+}
+
+.caret{
+  display:inline-block;
+  width:.06em;
+  height:.95em;
+  margin-left:.08em;
+  vertical-align:-0.1em;
+  background:var(--accent);
+  animation:blink 1s steps(1) infinite;
+}
+@keyframes blink{50%{opacity:0}}
+
+.resume-terminal{
+  position:absolute;
+  top:28px;
+  right:4.5vw;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  z-index:5;
+}
+
+.terminal-btn{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px 20px;
+  border-radius:12px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:.9rem;
+  text-decoration:none;
+  color:#f6f0e6;
+  background:var(--ink);
+  border:1px solid var(--ink);
+  box-shadow:var(--shadow);
+  transition:all .25s ease;
+  white-space:nowrap;
+}
+
+.terminal-btn:hover{
+  transform:scale(1.05);
+  background:var(--accent);
+  border-color:var(--accent);
+  box-shadow:0 10px 30px rgba(155,28,49,.35);
+}
+
+.terminal-symbol{color:#e8a0ad;font-weight:600;}
+
+.terminal-sub{
+  margin-top:8px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:.78rem;
+  color:var(--muted);
+}
+
+.left-col{
+  position:absolute;
+  left:4.5vw;
+  top:max(32vh,290px);
+  z-index:3;
+  display:flex;
+  flex-direction:column;
+}
+
+.photo-circle{
+  width:clamp(220px,min(30vw,calc((100vh - max(32vh,290px) - 110px)*0.75)),480px);
+  aspect-ratio:3/4;
+  border-radius:22px;
+  border:2.5px solid var(--accent);
+  overflow:hidden;
+  flex-shrink:0;
+  background:linear-gradient(160deg,#e4e5e8,var(--grey));
+  box-shadow:0 0 0 6px var(--accent-soft),0 18px 40px rgba(155,28,49,.25);
+}
+
+.photo-circle img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center top;
+}
+
+.info{
+  margin-top:2.5vh;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.name{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(1.1rem,1.6vw,1.5rem);
+  font-weight:700;
+  letter-spacing:-0.02em;
+}
+
+.role-sub{
+  font-family:'JetBrains Mono',monospace;
+  font-size:clamp(.68rem,.95vw,.88rem);
+  color:var(--muted);
+  letter-spacing:.04em;
+  line-height:1.6;
+  margin-top:6px;
+}
+
+.icons-row{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  gap:22px;
+  padding:28px 32px;
+  border-radius:18px;
+  background:rgba(255,250,242,0.85);
+  backdrop-filter:blur(10px);
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+  z-index:3;
+}
+
+.skill-group{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.skill-group+.skill-group{
+  padding-top:22px;
+  border-top:1px solid var(--line);
+}
+
+.icon-group-title{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.65rem;
+  color:var(--accent);
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+
+.icons-grid{
+  display:flex;
+  flex-direction:row;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.ic{
+  width:clamp(50px,3.2vw,64px);
+  height:clamp(50px,3.2vw,64px);
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:all .25s ease;
+  background:#fff;
+  border:1px solid var(--line);
+  overflow:hidden;
+  flex-shrink:0;
+}
+
+.ic img{
+  width:58%;
+  height:58%;
+  object-fit:contain;
+  transition:all .3s ease;
+}
+
+.ic .txt{
+  font-family:'JetBrains Mono',monospace;
+  font-weight:700;
+  color:var(--accent);
+  text-align:center;
+  line-height:1.25;
+  font-size:.5rem;
+}
+
+.ic:hover{
+  transform:translateY(-4px) scale(1.08);
+  border-color:var(--accent-line);
+  box-shadow:0 8px 18px rgba(155,28,49,.2);
+}
+
+.ic:hover img{transform:scale(1.15);}
+
+.right-col{
+  position:absolute;
+  right:4.5vw;
+  top:max(32vh,290px);
+  z-index:3;
+  width:clamp(480px,36vw,720px);
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  gap:32px;
+}
+
+.social-box{
+  width:100%;
+  padding:14px 16px;
+  border-radius:16px;
+  background:rgba(255,250,242,0.85);
+  backdrop-filter:blur(10px);
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+}
+
+.social-title{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.6rem;
+  color:var(--accent);
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+
+.social-icons{
+  display:flex;
+  gap:14px;
+}
+
+.social-icons a{
+  width:42px;
+  height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:10px;
+  background:#fff;
+  border:1px solid var(--line);
+  color:var(--ink);
+  transition:all .25s ease;
+}
+
+.social-icons img{
+  width:58%;
+  height:58%;
+  object-fit:contain;
+}
+
+.social-icons svg{width:55%;height:55%;}
+
+.social-icons a:hover{
+  transform:translateY(-4px) scale(1.1);
+  border-color:var(--accent);
+  color:var(--accent);
+  box-shadow:0 8px 18px rgba(155,28,49,.25);
+}
+
+/* ═══════════════════════════════════════
+   SECTIONS
+═══════════════════════════════════════ */
+
+.projects,.experience{
+  padding:90px 4.5vw;
+  position:relative;
+  z-index:2;
+}
+
+.section-title{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;
+  font-size:clamp(1.8rem,3.5vw,3rem);
+  letter-spacing:-0.03em;
+  margin-bottom:56px;
+}
+
+.projects-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:44px;
+}
+
+.project-card{
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  background:var(--card);
+  box-shadow:var(--shadow);
+  position:relative;
+  cursor:pointer;
+  transform-style:preserve-3d;
+  transition:transform .15s ease,box-shadow .25s ease,border-color .25s ease;
+}
+
+.project-card:hover{
+  border-color:var(--accent);
+  box-shadow:0 20px 50px rgba(155,28,49,0.2);
+}
+
+.project-visual{
+  height:240px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  background:linear-gradient(160deg,#ecedef,#d3d5d9);
+  transition:all .4s ease;
+}
+
+.project-visual svg{
+  width:84px;height:84px;
+  stroke:var(--accent);
+  fill:none;
+  stroke-width:1.3;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.project-visual span{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.7rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--body);
+}
+
+.project-card:hover .project-visual{
+  filter:blur(6px) brightness(0.55);
+  transform:scale(1.08);
+}
+
+.project-info{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:28px;
+  opacity:0;
+  transform:translateY(10px);
+  transition:all .35s ease;
+}
+
+.project-card:hover .project-info{opacity:1;transform:translateY(0);}
+
+.project-info h3{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:600;
+  font-size:1.2rem;
+  letter-spacing:-0.02em;
+  margin-bottom:10px;
+  color:#fff;
+}
+
+.project-info p{
+  font-size:.9rem;
+  color:#ece7de;
+  line-height:1.6;
+  max-width:260px;
+  margin-bottom:16px;
+}
+
+.project-info .view-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 18px;
+  border-radius:8px;
+  background:var(--accent);
+  border:1px solid var(--accent);
+  color:#fff;
+  font-family:'JetBrains Mono',monospace;
+  font-size:.75rem;
+  letter-spacing:.06em;
+  cursor:pointer;
+  transition:background .2s,box-shadow .2s;
+  text-decoration:none;
+}
+.project-info .view-btn:hover{
+  background:var(--accent-dark);
+  box-shadow:0 0 16px rgba(155,28,49,.5);
+}
+
+/* ── ABOUT ── */
+.about{
+  position:relative;
+  padding:100px 4.5vw 70px;
+  z-index:2;
+}
+
+.about-bg{
+  position:absolute;
+  top:20px;left:4.5vw;
+  font-size:20rem;
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;
+  color:rgba(155,28,49,0.05);
+  pointer-events:none;
+  user-select:none;
+  line-height:1;
+}
+
+.about-title{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(2rem,4vw,3.2rem);
+  margin-bottom:50px;
+  position:relative;
+  z-index:2;
+}
+
+.about-container{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(250px,360px);
+  column-gap:56px;
+  align-items:stretch;
+}
+
+.about-text{
+  position:relative;
+  z-index:2;
+  padding:38px 40px;
+  background:rgba(255,250,242,0.94);
+  backdrop-filter:blur(6px);
+  border:1px solid var(--line);
+  border-radius:20px;
+  box-shadow:0 20px 50px rgba(60,40,30,0.16);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  font-size:1rem;
+  line-height:1.85;
+  color:var(--body);
+}
+
+.about-text p:last-child{margin-bottom:0;}
+.about-text p{margin-bottom:22px;}
+.about-text b{color:var(--ink);font-weight:600;}
+.about-intro{font-size:1.15rem;color:var(--ink);}
+
+.about-side{
+  display:flex;
+  flex-direction:column;
+  gap:28px;
+}
+
+.about-card{
+  flex:1;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:20px 22px;
+  box-shadow:var(--shadow);
+}
+
+.about-card h4{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.65rem;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:12px;
+  font-weight:600;
+}
+
+.about-card ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.about-card li{font-size:.88rem;line-height:1.5;color:var(--body);}
+.about-card li small{display:block;color:var(--muted);font-size:.76rem;margin-top:2px;}
+
+/* ── EXPERIENCE ── */
+.exp-list{
+  display:flex;
+  flex-direction:column;
+  gap:40px;
+}
+
+.exp-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-left:4px solid var(--accent);
+  border-radius:16px;
+  padding:26px 30px;
+  box-shadow:var(--shadow);
+}
+
+.exp-head{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  gap:6px 20px;
+  margin-bottom:16px;
+}
+
+.exp-role{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1.25rem;
+  font-weight:700;
+  letter-spacing:-0.02em;
+}
+
+.exp-company{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.75rem;
+  color:var(--accent);
+  letter-spacing:.06em;
+  margin-top:4px;
+}
+
+.exp-date{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.75rem;
+  color:var(--muted);
+  white-space:nowrap;
+}
+
+.exp-card ul{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.exp-card li{
+  position:relative;
+  padding-left:22px;
+  font-size:.9rem;
+  line-height:1.65;
+  color:var(--body);
+}
+
+.exp-card li::before{
+  content:'›';
+  position:absolute;
+  left:4px;
+  color:var(--accent);
+  font-weight:700;
+}
+
+/* ── CONTACT ── */
+.contact{
+  position:relative;
+  z-index:2;
+  padding:60px 4.5vw 80px;
+  text-align:center;
+  border-top:1px solid var(--line);
+}
+
+.contact p{
+  color:var(--body);
+  max-width:520px;
+  margin:0 auto 22px;
+  line-height:1.7;
+}
+
+.contact .social-icons{justify-content:center;}
+
+.contact small{
+  display:block;
+  margin-top:30px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:.7rem;
+  color:var(--muted);
+}
+
+/* ═══════════════════════════════════════
+   PROJECT MODAL
+═══════════════════════════════════════ */
+
+.modal-overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(34,35,43,0.65);
+  z-index:1000;
+  align-items:center;
+  justify-content:center;
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  padding:20px;
+}
+.modal-overlay.open{display:flex;}
+
+.modal{
+  background:var(--card);
+  border:1px solid var(--accent-line);
+  border-radius:24px;
+  width:min(780px,100%);
+  max-height:90vh;
+  overflow-y:auto;
+  box-shadow:0 40px 80px rgba(0,0,0,0.35);
+  position:relative;
+  animation:modalIn .32s cubic-bezier(0.16,1,0.3,1);
+  scrollbar-width:thin;
+  scrollbar-color:var(--accent-line) transparent;
+}
+
+.modal::-webkit-scrollbar{width:4px;}
+.modal::-webkit-scrollbar-track{background:transparent;}
+.modal::-webkit-scrollbar-thumb{background:var(--accent-line);border-radius:4px;}
+
+@keyframes modalIn{
+  from{opacity:0;transform:scale(0.9) translateY(24px);}
+  to{opacity:1;transform:scale(1) translateY(0);}
+}
+
+.modal-close{
+  position:absolute;
+  top:18px;right:18px;
+  width:34px;height:34px;
+  border-radius:10px;
+  background:#fff;
+  border:1px solid var(--line);
+  color:var(--muted);
+  font-size:18px;
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s,color .2s,border-color .2s;
+  z-index:10;
+  line-height:1;
+}
+.modal-close:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
+
+.modal-header{
+  padding:28px 32px 22px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:flex-start;
+  gap:18px;
+}
+
+.modal-icon{
+  width:54px;height:54px;
+  border-radius:14px;
+  background:var(--accent-soft);
+  border:1px solid var(--accent-line);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.modal-icon svg{width:26px;height:26px;}
+
+.modal-title-group{flex:1;}
+.modal-title{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1.45rem;
+  font-weight:700;
+  color:var(--ink);
+  letter-spacing:-0.03em;
+  margin-bottom:5px;
+  padding-right:40px;
+}
+.modal-subtitle{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.68rem;
+  color:var(--accent);
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+
+.status-badge{
+  display:flex;align-items:center;gap:6px;
+  background:rgba(22,130,70,0.08);
+  border:1px solid rgba(22,130,70,0.28);
+  border-radius:20px;
+  padding:5px 13px;
+  margin-right:36px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:.65rem;
+  color:#168246;
+  letter-spacing:.06em;
+  flex-shrink:0;
+  white-space:nowrap;
+}
+.status-badge.wip{
+  background:rgba(190,120,10,0.08);
+  border-color:rgba(190,120,10,0.3);
+  color:#a8650a;
+}
+.status-dot{
+  width:6px;height:6px;
+  border-radius:50%;
+  background:currentColor;
+  animation:pulseDot 2s infinite;
+}
+@keyframes pulseDot{0%,100%{opacity:1}50%{opacity:0.35}}
+
+.modal-body{padding:24px 32px 32px;display:flex;flex-direction:column;gap:22px;}
+
+.overview-text{
+  font-size:.92rem;
+  line-height:1.82;
+  color:var(--body);
+}
+.overview-text b{color:var(--ink);font-weight:600;}
+
+.section-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.63rem;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:12px;
+}
+
+.metrics-row{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+.metric-card{
+  background:var(--accent-soft);
+  border:1px solid var(--accent-line);
+  border-radius:14px;
+  padding:14px 16px;
+  text-align:center;
+}
+.metric-val{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1.4rem;
+  font-weight:700;
+  color:var(--accent);
+  letter-spacing:-0.03em;
+}
+.metric-lbl{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.6rem;
+  color:var(--muted);
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  margin-top:3px;
+}
+
+.modal-divider{height:1px;background:var(--line);}
+
+.tech-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(138px,1fr));
+  gap:9px;
+}
+.tech-chip{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:11px 13px;
+  display:flex;flex-direction:column;gap:5px;
+  transition:border-color .2s,background .2s;
+  cursor:default;
+}
+.tech-chip:hover{
+  border-color:var(--accent-line);
+  background:var(--accent-soft);
+}
+.tech-chip-top{display:flex;align-items:center;gap:8px;}
+.tech-chip-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.tech-chip-name{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.73rem;
+  font-weight:600;
+  color:var(--ink);
+}
+.tech-chip-desc{font-size:.7rem;color:var(--muted);line-height:1.4;}
+
+.features-list{display:flex;flex-direction:column;gap:9px;}
+.feature-row{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:.85rem;color:var(--body);line-height:1.55;
+}
+.feature-arrow{
+  width:18px;height:18px;
+  border-radius:5px;
+  background:var(--accent-soft);
+  border:1px solid var(--accent-line);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  margin-top:1px;
+  font-size:10px;
+  color:var(--accent);
+}
+.feature-row b{color:var(--ink);font-weight:600;}
+
+/* ═══════════════════════════════════════
+   MOBILE ≤ 768px
+═══════════════════════════════════════ */
+@media(max-width:768px){
+  .hero{
+    min-height:auto;
+    display:flex;
+    flex-direction:column;
+    padding:0 5vw 48px;
+    gap:0;
+  }
+  .heading{position:static;padding-top:24px;margin-bottom:28px;}
+  .resume-terminal{position:static;align-items:flex-start;margin-bottom:32px;}
+  .terminal-sub{display:none;}
+  .left-col{
+    position:static;flex-direction:row;
+    align-items:center;gap:18px;margin-bottom:28px;
+  }
+  .photo-circle{width:96px;aspect-ratio:3/4;border-radius:14px;flex-shrink:0;}
+  .info{margin-top:0;}
+  .name{font-size:1.1rem;}
+  .role-sub{font-size:.72rem;}
+  .icons-row{padding:16px 18px;gap:12px;}
+  .ic{width:44px;height:44px;}
+  .right-col{position:static;width:100%;top:auto;right:auto;}
+  .projects,.experience{padding:40px 5vw;}
+  .projects-grid{grid-template-columns:1fr;gap:24px;}
+  .project-visual{height:200px;}
+  .about{padding:50px 5vw 40px;}
+  .about-bg{font-size:8rem;}
+  .about-container{grid-template-columns:1fr;row-gap:24px;}
+  .about-text{padding:26px 22px;}
+  .exp-card{padding:20px 18px;}
+  .modal-header{padding:22px 20px 18px;gap:14px;flex-wrap:wrap;}
+  .status-badge{margin-right:0;}
+  .modal-body{padding:20px 20px 28px;}
+  .modal-title{font-size:1.15rem;}
+  .metrics-row{grid-template-columns:repeat(3,1fr);}
+  .metric-val{font-size:1.1rem;}
+  .tech-grid{grid-template-columns:repeat(2,1fr);}
+}
+
+@media(min-width:769px) and (max-width:1100px){
+  .right-col{width:380px;}
+  .about-container{grid-template-columns:1fr;row-gap:28px;}
+  .about-side{flex-direction:row;}
+  .about-side .about-card{flex:1;}
+}
+</style>
+</head>
+
+<body>
+<canvas id="stars"></canvas>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<div class="hero">
+
+  <div class="heading">
+    <div class="h1">Hi, I'm <span class="p">Richard</span></div>
+    <div class="h2"><span id="typed">A DevOps Engineer 👷</span><span class="caret" aria-hidden="true"></span></div>
+  </div>
+
+  <div class="resume-terminal">
+    <a href="Richard_Carvalho_Resume_DevOps_2026.pdf" download class="terminal-btn">
+      <span class="terminal-symbol">$</span>
+      <span class="terminal-command">./download_resume.sh</span>
+    </a>
+    <div class="terminal-sub">Click to download my resume.</div>
+  </div>
+
+  <div class="left-col">
+    <div class="photo-circle"><img src="Images/richard.png" alt="Richard Carvalho"></div>
+    <div class="info">
+      <div class="name">Richard Carvalho</div>
+      <div class="role-sub">DevOps Engineer<br>Mangaluru, India</div>
+    </div>
+  </div>
+
+  <div class="right-col">
+  <div class="icons-row">
+    <div class="skill-group">
+      <div class="icon-group-title">CI/CD &amp; GitOps</div>
+      <div class="icons-grid">
+        <div class="ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg" title="GitHub Actions" alt="GitHub Actions"></div>
+        <div class="ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg" title="Jenkins" alt="Jenkins"></div>
+        <div class="ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" title="Git" alt="Git"></div>
+        <div class="ic" title="Octopus Deploy"><span class="txt">Octopus<br>Deploy</span></div>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="icon-group-title">Cloud &amp; Containers</div>
+      <div class="icons-grid">
+        <div class="ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" title="Azure" alt="Azure"></div>
+        <div class="ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain.svg" title="AWS" alt="AWS"></div>
+        <div class="ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" title="Docker" alt="Docker"></div>
+        <div class="ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-original.svg" title="Kubernetes" alt="Kubernetes"></div>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="icon-group-title">Monitoring &amp; Code Security</div>
+      <div class="icons-grid">
+        <div class="ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg" title="Grafana" alt="Grafana"></div>
+        <div class="ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prometheus/prometheus-original.svg" title="Prometheus" alt="Prometheus"></div>
+        <div class="ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opentelemetry/opentelemetry-original.svg" title="OpenTelemetry" alt="OpenTelemetry"></div>
+        <div class="ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sonarqube/sonarqube-original.svg" title="SonarQube" alt="SonarQube"></div>
+        <div class="ic" title="Checkmarx"><span class="txt">Check<br>marx</span></div>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="icon-group-title">Scripting &amp; Languages</div>
+      <div class="icons-grid">
+        <div class="ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/powershell/powershell-original.svg" title="PowerShell" alt="PowerShell"></div>
+        <div class="ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" title="Bash" alt="Bash"></div>
+        <div class="ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" title="Python" alt="Python"></div>
+        <div class="ic"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" title="SQL" alt="SQL"></div>
+      </div>
+    </div>
+  </div>
+
+    <div class="social-box">
+      <div class="social-title">SOCIALS</div>
+      <div class="social-icons">
+        <a href="https://github.com/richard-carvalho-004" target="_blank" rel="noopener" aria-label="GitHub">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
+        </a>
+        <a href="https://www.linkedin.com/in/richard-carvalho-4640a718a/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn">
+        </a>
+        <a href="mailto:richardrc20072001@gmail.com" aria-label="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end .hero -->
+
+
+<!-- ═══════════════ ABOUT ═══════════════ -->
+<section class="about">
+  <div class="about-bg">ME</div>
+  <h2 class="about-title">About Me</h2>
+  <div class="about-container">
+    <div class="about-text">
+      <p class="about-intro">DevOps Engineer | CI/CD &amp; Automation | Cloud &amp; Observability</p>
+      <p>I build and maintain the pipelines, environments and monitoring that let product teams ship with confidence. At <b>EG A/S</b> I work across CI/CD, cloud infrastructure, Kubernetes and observability, keeping delivery fast and failures visible.</p>
+      <p>Recently I've migrated <b>150+ Jenkins pipelines</b> to <b>GitHub Actions</b> with Octopus Deploy, automated Kubernetes config and secrets delivery with <b>FluxCD</b>, and built <b>Grafana</b> dashboards that turn Checkmarx scan results and VM health into something teams actually look at.</p>
+      <p>I enjoy replacing manual, fragile processes with automation, and I use AI-assisted tooling where it helps, with every change reviewed before it merges. I started out as a data analyst, which is why I care about dashboards that answer real questions.</p>
+    </div>
+    <div class="about-side">
+      <div class="about-card">
+        <h4>// Education</h4>
+        <ul>
+          <li>Master of Computer Applications<small>St Aloysius Institute of Management &amp; Information Technology · 2023 – 2025</small></li>
+          <li>Bachelor of Computer Applications<small>Raja Lakhamagouda Science Institute, Belagavi · 2019 – 2022</small></li>
+        </ul>
+      </div>
+      <div class="about-card">
+        <h4>// Certifications</h4>
+        <ul>
+          <li>AWS Cloud Practitioner Essentials</li>
+          <li>Google Data Analytics</li>
+          <li>Google Project Management</li>
+          <li>Getting Started with Python</li>
+          <li>Cloud Computing Basics</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ EXPERIENCE ═══════════════ -->
+<section class="experience">
+  <h2 class="section-title">Experience</h2>
+  <div class="exp-list">
+
+    <div class="exp-card">
+      <div class="exp-head">
+        <div>
+          <div class="exp-role">DevOps Engineer</div>
+          <div class="exp-company">EG A/S · Mangaluru, Karnataka</div>
+        </div>
+        <div class="exp-date">Apr 2025 – Present</div>
+      </div>
+      <ul>
+        <li>Migrated 150+ Jenkins pipelines from multiple external tenants into the EG tenant, rebuilding them as GitHub Actions workflows integrated with Octopus Deploy.</li>
+        <li>Moved Jenkins cron jobs to PowerShell scripts on VMs or GitHub workflows, so limited self-hosted runner capacity no longer queues and blocks other workflows.</li>
+        <li>Built development environments on Azure (VMs, databases, domain names) with Octopus Deploy for 2 teams blocked by GDPR and technical constraints.</li>
+        <li>Automated Kubernetes config and secrets deployment with FluxCD for one team, now rolling out to others.</li>
+        <li>Pinned GitHub Actions to commit SHAs across 40+ repositories for 7+ teams, using Dependabot and AI-assisted tooling, with each PR reviewed before merge.</li>
+        <li>Maintain CI/CD pipelines, repositories and services across 6 environments using Docker, Kubernetes and Prometheus, with SonarQube and Checkmarx scanning; help run the team's Kanban iterations.</li>
+      </ul>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-head">
+        <div>
+          <div class="exp-role">Junior Data Analyst</div>
+          <div class="exp-company">Kiyaan Infotech Link · Belagavi, Karnataka</div>
+        </div>
+        <div class="exp-date">Nov 2022 – Nov 2023</div>
+      </div>
+      <ul>
+        <li>Analyzed customer behavior data with SQL to support data-driven marketing campaigns and product targeting.</li>
+        <li>Built 4+ Tableau and Excel dashboards and 2 quarterly reports that helped stakeholders track data trends.</li>
+        <li>Collaborated with cross-functional teams and took part in scrum ceremonies.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════ PROJECTS ═══════════════ -->
+<section class="projects">
+  <h2 class="section-title">Projects</h2>
+  <div class="projects-grid">
+
+    <div class="project-card" onclick="openModal('cicd')">
+      <div class="project-visual">
+        <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 21v-5h5"/></svg>
+        <span>CI/CD Migration</span>
+      </div>
+      <div class="project-info">
+        <h3>Jenkins to GitHub Actions</h3>
+        <p>Migrated 150+ pipelines into one tenant, rebuilt as GitHub Actions workflows with Octopus Deploy.</p>
+        <span class="view-btn">▶ VIEW DETAILS</span>
+      </div>
+    </div>
+
+    <div class="project-card" onclick="openModal('ota')">
+      <div class="project-visual">
+        <svg viewBox="0 0 24 24"><path d="M17.5 19a4.5 4.5 0 1 0-1.4-8.8A6 6 0 0 0 4.5 12 3.5 3.5 0 0 0 6 19h11.5z"/><path d="M12 11v6"/><path d="m9.5 13.5 2.5-2.5 2.5 2.5"/></svg>
+        <span>AWS · OTA Updates</span>
+      </div>
+      <div class="project-info">
+        <h3>OTA Update Service</h3>
+        <p>Over-the-air app update platform on AWS, built to replace Microsoft CodePush.</p>
+        <span class="view-btn">▶ VIEW DETAILS</span>
+      </div>
+    </div>
+
+    <div class="project-card" onclick="openModal('observability')">
+      <div class="project-visual">
+        <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m7 15 4-5 3 3 5-7"/></svg>
+        <span>Grafana · Observability</span>
+      </div>
+      <div class="project-info">
+        <h3>Observability &amp; Security Dashboards</h3>
+        <p>Grafana dashboards for Checkmarx results and VM health, with per-product views and Teams alerts.</p>
+        <span class="view-btn">▶ VIEW DETAILS</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════ CONTACT ═══════════════ -->
+<section class="contact">
+  <h2 class="section-title">Get in touch</h2>
+  <p>Open to conversations about DevOps, CI/CD and cloud automation. Reach out on LinkedIn or by email.</p>
+  <div class="social-icons">
+    <a href="https://github.com/richard-carvalho-004" target="_blank" rel="noopener" aria-label="GitHub">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
+    </a>
+    <a href="https://www.linkedin.com/in/richard-carvalho-4640a718a/" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn">
+    </a>
+    <a href="mailto:richardrc20072001@gmail.com" aria-label="Email">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+    </a>
+  </div>
+  <small>© 2026 Richard Carvalho</small>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     MODALS
+═══════════════════════════════════════ -->
+
+<!-- MODAL: CI/CD migration -->
+<div class="modal-overlay" id="modal-cicd">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="cicd-title">
+    <button class="modal-close" onclick="closeModal('cicd')" aria-label="Close">✕</button>
+
+    <div class="modal-header">
+      <div class="modal-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#9b1c31" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 21v-5h5"/>
+        </svg>
+      </div>
+      <div class="modal-title-group">
+        <div class="modal-title" id="cicd-title">Jenkins to GitHub Actions</div>
+        <div class="modal-subtitle">CI/CD · GitHub Actions · Octopus Deploy</div>
+      </div>
+      <div class="status-badge"><div class="status-dot"></div>DELIVERED</div>
+    </div>
+
+    <div class="modal-body">
+      <p class="overview-text">
+        Consolidated Jenkins pipelines that lived in several external tenants into the EG tenant, rebuilding them as <b>GitHub Actions</b> workflows integrated with <b>Octopus Deploy</b>. Scheduled work moved off the limited self-hosted runners so it no longer blocks other workflows.
+      </p>
+
+      <div class="metrics-row">
+        <div class="metric-card"><div class="metric-val">150+</div><div class="metric-lbl">Pipelines migrated</div></div>
+        <div class="metric-card"><div class="metric-val">40+</div><div class="metric-lbl">Repos SHA-pinned</div></div>
+        <div class="metric-card"><div class="metric-val">7+</div><div class="metric-lbl">Teams</div></div>
+      </div>
+
+      <div class="modal-divider"></div>
+
+      <div>
+        <div class="section-label">// tech stack</div>
+        <div class="tech-grid">
+          <div class="tech-chip"><div class="tech-chip-top"><div class="tech-chip-dot" style="background:#22232b;"></div><div class="tech-chip-name">GitHub Actions</div></div><div class="tech-chip-desc">Workflow automation</div></div>
+          <div class="tech-chip"><div class="tech-chip-top"><div class="tech-chip-dot" style="background:#d33833;"></div><div class="tech-chip-name">Jenkins</div></div><div class="tech-chip-desc">Source pipelines</div></div>
+          <div class="tech-chip"><div class="tech-chip-top"><div class="tech-chip-dot" style="background:#2f93e0;"></div><div class="tech-chip-name">Octopus Deploy</div></div><div class="tech-chip-desc">Release &amp; deployment</div></div>
+          <div class="tech-chip"><div class="tech-chip-top"><div class="tech-chip-dot" style="background:#5391fe;"></div><div class="tech-chip-name">PowerShell</div></div><div class="tech-chip-desc">Scheduled jobs on VMs</div></div>
+          <div class="tech-chip"><div class="tech-chip-top"><div class="tech-chip-dot" style="background:#9b1c31;"></div><div class="tech-chip-name">Dependabot</div></div><div class="tech-chip-desc">Action version updates</div></div>
+        </div>
+      </div>
+
+      <div class="modal-divider"></div>
+
+      <div>
+        <div class="section-label">// key work</div>
+        <div class="features-list">
+          <div class="feature-row"><div class="feature-arrow">›</div><span><b>Tenant consolidation</b> — pipelines from multiple external tenants rebuilt as GitHub Actions workflows in the EG tenant</span></div>
+          <div class="feature-row"><div class="feature-arrow">›</div><span><b>Runner capacity relief</b> — Jenkins cron jobs moved to PowerShell scripts on VMs (long-running jobs) or GitHub workflows, so queues stop blocking other teams</span></div>
+          <div class="feature-row"><div class="feature-arrow">›</div><span><b>Supply-chain hardening</b> — actions pinned to commit SHAs across 40+ repositories, kept current with Dependabot and AI-assisted tooling, every PR reviewed before merge</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- MODAL: OTA -->
+<div class="modal-overlay" id="modal-ota">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="ota-title">
+    <button class="modal-close" onclick="closeModal('ota')" aria-label="Close">✕</button>
+
+    <div class="modal-header">
+      <div class="modal-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#9b1c31" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17.5 19a4.5 4.5 0 1 0-1.4-8.8A6 6 0 0 0 4.5 12 3.5 3.5 0 0 0 6 19h11.5z"/><path d="M12 11v6"/><path d="m9.5 13.5 2.5-2.5 2.5 2.5"/>
+        </svg>
+      </div>
+      <div class="modal-title-group">
+        <div class="modal-title" id="ota-title">OTA Update Service</div>
+        <div class="modal-subtitle">AWS · S3 · API Gateway · ECS</div>
+      </div>
+      <div class="status-badge wip"><div class="status-dot"></div>DEV TESTING</div>
+    </div>
+
+    <div class="modal-body">
+      <p class="overview-text">
+        Microsoft CodePush was retired along with Visual Studio App Center on <b>March 31, 2025</b>. I developed an over-the-air update solution on AWS to replace it, so mobile teams can keep shipping updates without a store release. It is currently in dev testing.
+      </p>
+
+      <div class="metrics-row">
+        <div class="metric-card"><div class="metric-val">S3</div><div class="metric-lbl">Bundle storage</div></div>
+        <div class="metric-card"><div class="metric-val">API GW</div><div class="metric-lbl">API layer</div></div>
+        <div class="metric-card"><div class="metric-val">ECS</div><div class="metric-lbl">Compute</div></div>
+      </div>
+
+      <div class="modal-divider"></div>
+
+      <div>
+        <div class="section-label">// tech stack</div>
+        <div class="tech-grid">
+          <div class="tech-chip"><div class="tech-chip-top"><div class="tech-chip-dot" style="background:#f59e0b;"></div><div class="tech-chip-name">AWS S3</div></div><div class="tech-chip-desc">Update bundle storage</div></div>
+          <div class="tech-chip"><div class="tech-chip-top"><div class="tech-chip-dot" style="background:#c026d3;"></div><div class="tech-chip-name">API Gateway</div></div><div class="tech-chip-desc">Client-facing endpoints</div></div>
+          <div class="tech-chip"><div class="tech-chip-top"><div class="tech-chip-dot" style="background:#f97316;"></div><div class="tech-chip-name">AWS ECS</div></div><div class="tech-chip-desc">Containerised service</div></div>
+          <div class="tech-chip"><div class="tech-chip-top"><div class="tech-chip-dot" style="background:#2496ed;"></div><div class="tech-chip-name">Docker</div></div><div class="tech-chip-desc">Service packaging</div></div>
+        </div>
+      </div>
+
+      <div class="modal-divider"></div>
+
+      <div>
+        <div class="section-label">// key work</div>
+        <div class="features-list">
+          <div class="feature-row"><div class="feature-arrow">›</div><span><b>CodePush replacement</b> — self-hosted OTA update path built on AWS after the Microsoft service was shut down</span></div>
+          <div class="feature-row"><div class="feature-arrow">›</div><span><b>Managed AWS building blocks</b> — S3 for storage, API Gateway for the API surface and ECS for the running service</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- MODAL: Observability -->
+<div class="modal-overlay" id="modal-observability">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="obs-title">
+    <button class="modal-close" onclick="closeModal('observability')" aria-label="Close">✕</button>
+
+    <div class="modal-header">
+      <div class="modal-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#9b1c31" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 3v18h18"/><path d="m7 15 4-5 3 3 5-7"/>
+        </svg>
+      </div>
+      <div class="modal-title-group">
+        <div class="modal-title" id="obs-title">Observability &amp; Security Dashboards</div>
+        <div class="modal-subtitle">Grafana · OpenTelemetry · Checkmarx</div>
+      </div>
+      <div class="status-badge"><div class="status-dot"></div>IN USE</div>
+    </div>
+
+    <div class="modal-body">
+      <p class="overview-text">
+        Dashboards that put security scan results and infrastructure health in front of the teams who own them. The Checkmarx UI is hard to use and not everyone has access, so I surfaced its results in <b>Grafana</b> through the Checkmarx API. VM monitoring alerts each owning team in Microsoft Teams, so problems are no longer found only when a website goes down.
+      </p>
+
+      <div class="metrics-row">
+        <div class="metric-card"><div class="metric-val">6</div><div class="metric-lbl">VMs monitored</div></div>
+        <div class="metric-card"><div class="metric-val">Teams</div><div class="metric-lbl">CPU alerts</div></div>
+        <div class="metric-card"><div class="metric-val">Per product</div><div class="metric-lbl">OTel filtering</div></div>
+      </div>
+
+      <div class="modal-divider"></div>
+
+      <div>
+        <div class="section-label">// tech stack</div>
+        <div class="tech-grid">
+          <div class="tech-chip"><div class="tech-chip-top"><div class="tech-chip-dot" style="background:#f97316;"></div><div class="tech-chip-name">Grafana</div></div><div class="tech-chip-desc">Dashboards &amp; alerting</div></div>
+          <div class="tech-chip"><div class="tech-chip-top"><div class="tech-chip-dot" style="background:#e6522c;"></div><div class="tech-chip-name">Prometheus</div></div><div class="tech-chip-desc">Metrics</div></div>
+          <div class="tech-chip"><div class="tech-chip-top"><div class="tech-chip-dot" style="background:#425cc7;"></div><div class="tech-chip-name">OpenTelemetry</div></div><div class="tech-chip-desc">Telemetry &amp; tagging</div></div>
+          <div class="tech-chip"><div class="tech-chip-top"><div class="tech-chip-dot" style="background:#9b1c31;"></div><div class="tech-chip-name">Checkmarx API</div></div><div class="tech-chip-desc">Security scan data</div></div>
+          <div class="tech-chip"><div class="tech-chip-top"><div class="tech-chip-dot" style="background:#4e9bcd;"></div><div class="tech-chip-name">SonarQube</div></div><div class="tech-chip-desc">Code quality scanning</div></div>
+        </div>
+      </div>
+
+      <div class="modal-divider"></div>
+
+      <div>
+        <div class="section-label">// key work</div>
+        <div class="features-list">
+          <div class="feature-row"><div class="feature-arrow">›</div><span><b>Security results, accessible</b> — Grafana dashboards fed by the Checkmarx API so product teams can see scan results without the Checkmarx UI</span></div>
+          <div class="feature-row"><div class="feature-arrow">›</div><span><b>Per-product views</b> — OpenTelemetry tagging lets each team filter dashboards to only their own product's data</span></div>
+          <div class="feature-row"><div class="feature-arrow">›</div><span><b>Proactive VM alerts</b> — CPU threshold alerts routed to each owning team's Microsoft Teams channel as part of the central observability setup</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════ SCRIPTS ═══════════════ -->
+<script>
+/* ── Background dots ── */
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
+let stars = [], mouseX = 0, mouseY = 0;
+
+function init(){
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  stars = [];
+  for(let i = 0; i < 120; i++){
+    stars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 1.6 + 0.3,
+      speed: Math.random() * 0.5 + 0.15,
+      crimson: Math.random() < 0.15
+    });
+  }
+}
+
+window.addEventListener("mousemove", e => {
+  mouseX = (e.clientX - window.innerWidth / 2) * 0.02;
+  mouseY = (e.clientY - window.innerHeight / 2) * 0.02;
+});
+
+function animate(){
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  stars.forEach(s => {
+    ctx.beginPath();
+    ctx.arc(s.x + mouseX * s.speed, s.y + mouseY * s.speed, s.size, 0, Math.PI*2);
+    ctx.fillStyle = s.crimson ? "rgba(155,28,49,.35)" : "rgba(34,35,43,.18)";
+    ctx.fill();
+  });
+  requestAnimationFrame(animate);
+}
+
+window.addEventListener("resize", init);
+init();
+animate();
+
+/* ── Typewriter role ── */
+(function(){
+  const el = document.getElementById("typed");
+  if(!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  /* crimson football, drawn as SVG so it matches the theme */
+  const ball = '<svg class="ball" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.2" fill="#fffaf2" stroke="#9b1c31" stroke-width="1.4"/><path d="M12 8.2l3.6 2.6-1.4 4.2H9.8l-1.4-4.2z" fill="#9b1c31"/><path d="M12 8.2V2M15.6 10.8l5.9-1.9M14.2 15l3.6 5M9.8 15l-3.6 5M8.4 10.8 2.5 8.9" stroke="#9b1c31" stroke-width="1.3" fill="none" stroke-linecap="round"/></svg>';
+  const phrases = [
+    { t: "A DevOps Engineer ", e: "👷" },
+    { t: "A Cloud Enthusiast ", e: "☁️" },
+    { t: "An Automation Lover ", e: "😉" },
+    { t: "A Footballer ", e: ball }
+  ];
+  /* emoji counts as one typed unit so it is never split mid-character */
+  const len = ph => ph.t.length + 1;
+  let p = 0, c = len(phrases[0]), deleting = true;
+  function tick(){
+    const ph = phrases[p];
+    el.innerHTML = c > ph.t.length ? ph.t + ph.e : ph.t.slice(0, c);
+    let delay = deleting ? 45 : 85;
+    if(deleting){
+      if(c === 0){ deleting = false; p = (p + 1) % phrases.length; delay = 350; }
+      else c--;
+    } else {
+      if(c === len(ph)){ deleting = true; delay = 1800; }
+      else c++;
+    }
+    setTimeout(tick, delay);
+  }
+  setTimeout(tick, 1800);
+})();
+
+/* ── 3D card tilt — desktop only ── */
+if(window.innerWidth > 768){
+  document.querySelectorAll(".project-card").forEach(card => {
+    card.addEventListener("mousemove", e => {
+      const r = card.getBoundingClientRect();
+      const rotX = (e.clientY - r.top - r.height/2) / 12;
+      const rotY = (r.width/2 - (e.clientX - r.left)) / 12;
+      card.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+    });
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = "rotateX(0) rotateY(0)";
+    });
+  });
+}
+
+/* ── Modal logic ── */
+function openModal(id) {
+  const overlay = document.getElementById('modal-' + id);
+  if (!overlay) return;
+  overlay.style.display = 'flex';
+  requestAnimationFrame(() => overlay.classList.add('open'));
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(id) {
+  const overlay = document.getElementById('modal-' + id);
+  if (!overlay) return;
+  overlay.classList.remove('open');
+  setTimeout(() => { overlay.style.display = 'none'; }, 300);
+  document.body.style.overflow = '';
+}
+
+/* Close on overlay click */
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) {
+      const id = overlay.id.replace('modal-', '');
+      closeModal(id);
+    }
+  });
+});
+
+/* Close on Escape */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal-overlay.open').forEach(overlay => {
+      const id = overlay.id.replace('modal-', '');
+      closeModal(id);
+    });
+  }
+});
+</script>
+
+</body>
+</html>

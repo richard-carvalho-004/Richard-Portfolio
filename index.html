@@ -56,6 +56,45 @@ body{
   margin-right:auto;
 }
 
+/* ── parchment hero background (original SVG, inspired by a swirl-cloud paper look) ── */
+.hero-wrap{
+  position:relative;
+  overflow:hidden;
+}
+
+.hero-paper{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.008' numOctaves='4' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .40 0 0 0 0 .22 0 0 0 .55 -.18'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='8' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .22 0 0 0 0 .15 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse at 30% 40%,rgba(226,201,160,.35),transparent 60%),
+    radial-gradient(ellipse at 75% 70%,rgba(214,186,140,.28),transparent 55%),
+    linear-gradient(160deg,#f5ead6,#efe0c3);
+  -webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - 160px),transparent);
+  mask-image:linear-gradient(to bottom,#000 calc(100% - 160px),transparent);
+}
+
+.swirl{
+  position:absolute;
+  z-index:0;
+  pointer-events:none;
+  width:clamp(220px,20vw,420px);
+  height:auto;
+  opacity:.92;
+}
+.swirl.tl{top:-30px;left:-40px;}
+.swirl.tr{top:-40px;right:-40px;transform:scaleX(-1);width:clamp(180px,16vw,320px);}
+/* bottom pieces are flipped, so their cut edge sits at the bottom: fade it out */
+.swirl.bl,.swirl.br{
+  -webkit-mask-image:linear-gradient(to bottom,transparent,#000 45%);
+  mask-image:linear-gradient(to bottom,transparent,#000 45%);
+}
+.swirl.bl{bottom:40px;left:-40px;transform:scaleY(-1);width:clamp(160px,11vw,240px);}
+.swirl.br{bottom:40px;right:-20px;transform:scale(-1,-1);}
+
 .hero{
   position:relative;
   z-index:1;
@@ -874,6 +913,9 @@ body{
    MOBILE ≤ 768px
 ═══════════════════════════════════════ */
 @media(max-width:768px){
+  .swirl{width:150px;}
+  .swirl.tr,.swirl.bl{display:none;}
+  .swirl.br{bottom:40px;}
   .hero{
     min-height:auto;
     display:flex;
@@ -925,6 +967,12 @@ body{
 <canvas id="stars"></canvas>
 
 <!-- ═══════════════ HERO ═══════════════ -->
+<div class="hero-wrap">
+<div class="hero-paper" aria-hidden="true"></div>
+<img class="swirl tl" src="Images/swirl-corner.svg" alt="" aria-hidden="true">
+<img class="swirl tr" src="Images/swirl-corner.svg" alt="" aria-hidden="true">
+<img class="swirl bl" src="Images/swirl-corner.svg" alt="" aria-hidden="true">
+<img class="swirl br" src="Images/swirl-corner.svg" alt="" aria-hidden="true">
 <div class="hero">
 
   <div class="heading">
@@ -1006,6 +1054,7 @@ body{
   </div>
 
 </div><!-- end .hero -->
+</div><!-- end .hero-wrap -->
 
 
 <!-- ═══════════════ ABOUT ═══════════════ -->
